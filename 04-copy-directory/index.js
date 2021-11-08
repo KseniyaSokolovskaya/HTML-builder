@@ -20,7 +20,7 @@ async function copyDir(fromPath, toPath) {
 }
 
 (async () => {
-  await rmdir(copyDirPath, { recursive: true })
+  await rmdir(copyDirPath, { recursive: true });
   await copyDir(initialDirPath, copyDirPath);
 })();
 
