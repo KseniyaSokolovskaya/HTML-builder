@@ -1,19 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const process = require('process');
 
 const filePath = path.join(__dirname, './text.txt');
+const stream = new fs.ReadStream(filePath);
 
-const readFile = (path, coding) => new Promise((resolve, reject) => {
-  fs.readFile(path, coding, (error, data) => {
-    if (error) {
-      console.log('err');
-      reject(error);
-    }
-    console.log(data);
-    resolve(data);
-  });
+stream.on('readable', function () {
+  stream.setEncoding('utf8');
+  const data = stream.read();
+  data && process.stdout.write(data);
 });
-
-(async () => {
-  await readFile(filePath, 'utf8');
-})();
