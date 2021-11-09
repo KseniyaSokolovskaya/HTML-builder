@@ -18,7 +18,7 @@ fs.writeFile(filePath, '', (err) => {
 
 emitter.on('start', () => {
   stdin.on('data', data => {
-    if (!data || Buffer.from(data).toString('utf-8').slice(0, -1) === 'exit') {
+    if (!data || Buffer.from(data).toString('utf-8').trim() === 'exit') {
       stdout.write('Good bye!');
       process.exit();
     } else {
