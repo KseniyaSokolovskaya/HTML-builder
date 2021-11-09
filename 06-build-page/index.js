@@ -1,5 +1,5 @@
 const path = require('path');
-const { readdir, mkdir, rmdir, readFile, writeFile } = require('fs').promises;
+const { readdir, mkdir, rm, readFile, writeFile } = require('fs').promises;
 const { buildFiles } = require('../05-merge-styles/index.js');
 const { copyDir } = require('../04-copy-directory');
 
@@ -44,8 +44,8 @@ async function getReplacedTemplate(template, pathsObj) {
 }
 
 (async () => {
-  await rmdir(destDir, { recursive: true });
-  await mkdir(destDir, { recursive: true });
+  await rm(destDir, { recursive: true, force: true });
+  await rm(destDir, { recursive: true, force: true });
   await copyDir(initialDirPath, destDirAssetsPath);
   await buildFiles(initialDirStylesPath, destFileStylePath, '.css');
 

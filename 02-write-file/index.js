@@ -19,7 +19,7 @@ fs.writeFile(filePath, '', (err) => {
 emitter.on('start', () => {
   stdin.on('data', data => {
     if (!data || Buffer.from(data).toString('utf-8').slice(0, -1) === 'exit') {
-      stdout.write('Thank you for text!');
+      stdout.write('Good bye!');
       process.exit();
     } else {
       fs.appendFile(filePath, data, (err) => {
